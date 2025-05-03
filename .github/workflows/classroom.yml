@@ -20,9 +20,17 @@ jobs:
         timeout: 10
         max-score: 10
         setup-command: ''
+    - name: summation_test.py
+      id: summation_test-py
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 10
+        max-score: 10
+        setup-command: ''
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         SUBTRACTION_TEST-PY_RESULTS: "${{steps.subtraction_test-py.outputs.result}}"
+        SUMMATION_TEST-PY_RESULTS: "${{steps.summation_test-py.outputs.result}}"
       with:
-        runners: subtraction_test-py
+        runners: subtraction_test-py,summation_test-py
